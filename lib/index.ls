@@ -28,11 +28,11 @@ module.exports =
             html = fs.read-file-sync "#src/#dir/#name.jade" |> jade.render
             err, content <- browserify "#src/#dir/#name.ls", transform: [browserify-livescript] .bundle
             js = content |> ( .to-string!) |> ("<script>" + ) |> ( + "</script>")
-            fs.write-file-sync (
-              switch
-              | flatten => "#dest/#name.html"
-              | _ => "#dest/#dir/#name.html"
-            ), (html + js)
+            switch
+            | flatten => fs.write-file-sync "#dest/#name.html", (html + js)
+            | _ =>
+              if not (fs.exists-sync (path = "#dest/#dir")) then fs.mkdir-sync path
+              fs.write-file-sync "#dest/#dir/#name.html", (html + js)
             next!
       |> concat
     )
