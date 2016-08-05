@@ -1,6 +1,6 @@
 {
   "name": "glad-component-compiler",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,7 @@
     "browserify": "^13.0.0",
     "browserify-livescript": "^0.2.3",
     "jade": "^1.11.0",
+    "livescript": "^1.5.0",
     "prelude-ls": "^1.1.2"
   }
 }
